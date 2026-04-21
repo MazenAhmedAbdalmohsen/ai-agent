@@ -1,6 +1,6 @@
 # 🤖 AI Agent
 
-A production-ready AI Agent powered by **Claude** (Anthropic), with a clean chat UI and 6 built-in tools. Free to use.
+A production-ready AI Agent powered by **Groq** (free tier available), featuring a sleek dark-mode chat UI, 8 built-in tools, and autonomous PC control capabilities.
 
 ---
 
@@ -8,12 +8,14 @@ A production-ready AI Agent powered by **Claude** (Anthropic), with a clean chat
 
 | Tool | Description |
 |------|-------------|
-| 🔢 Calculator | Evaluate any math expression |
-| 🌐 Web Search | Search via DuckDuckGo (no API key needed) |
-| 🌤️ Weather | Current weather for any city (Open-Meteo, free) |
-| 🕐 Date & Time | Current date and time |
-| 📝 Notes | Save and read notes to disk |
-| 📏 Unit Converter | Length, weight, temperature, speed |
+| 💬 **Chat** | General conversation in any language |
+| 🔢 **Calculator** | Evaluate math expressions: `sqrt(144)`, `15 * 23`, `2 ** 10` |
+| 🌐 **Web Search** | Search via SerpAPI (Google) or DuckDuckGo fallback |
+| 🌤️ **Weather** | Current weather for any city (Open-Meteo, free) |
+| 🕐 **Date & Time** | Current date and time |
+| 📝 **Notes** | Save and read notes to local JSON file |
+| 📏 **Unit Converter** | Length, weight, temperature, speed |
+| 🤖 **AI Agent** | Autonomous PC control: mouse, keyboard, screenshots, open apps |
 
 ---
 
@@ -22,7 +24,7 @@ A production-ready AI Agent powered by **Claude** (Anthropic), with a clean chat
 ### 1. Clone and enter the project
 
 ```bash
-git clone <your-repo-url>
+git clone &lt;your-repo-url&gt;
 cd ai-agent
 ```
 
@@ -142,9 +144,12 @@ Edit `.env` to change behavior:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `ANTHROPIC_API_KEY` | — | **Required.** Your Anthropic API key |
-| `MODEL` | `claude-opus-4-5` | Claude model to use |
-| `MAX_TOKENS` | `4096` | Max tokens per response |
+| `GROQ_API_KEY` | — | **Required.** Your Groq API key |
+| `MODEL` | `openai/gpt-oss-120b` | Primary LLM model |
+| `FALLBACK_MODEL` | `llama-3.3-70b-versatile` | Auto-used when primary hits rate limit |
+| `MAX_TOKENS` | `4096` | Max tokens per response 
+| `SERPAPI_KEY` | — | Optional. Enables Google search fallback
+| `ENABLE_SCREEN_SAFETY`| `true` | Clamp mouse coords to screen bounds
 | `PORT` | `8000` | Server port |
 | `SYSTEM_PROMPT` | *(see config.py)* | Custom system prompt |
 
@@ -154,7 +159,7 @@ Edit `.env` to change behavior:
 
 ### Railway / Render / Fly.io
 
-Just set `ANTHROPIC_API_KEY` as an environment variable and deploy. The app runs on port 8000.
+Just set `GROQ_API_KEY` as an environment variable and deploy. The app runs on port 8000.
 
 ### Docker
 
